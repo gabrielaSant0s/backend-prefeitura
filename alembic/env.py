@@ -4,7 +4,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 from dotenv import load_dotenv
-from src.database import Base
+from src.database.session import Base
 from src.models import * 
 
 load_dotenv()
