@@ -10,3 +10,8 @@ class User(Base):
     hashed_password = Column(String)
 
     documents = relationship("Document", back_populates="user")
+    transports = relationship(
+        "TransportPass",
+        back_populates="user",
+        primaryjoin="User.username == TransportPass.username"
+    )

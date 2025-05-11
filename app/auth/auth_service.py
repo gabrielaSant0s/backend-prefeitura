@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 import jwt
 from fastapi import HTTPException
-from app.users.user_repository import get_user_by_email
+from app.users.user_repository import UserRepository
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv
 
@@ -29,7 +29,7 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     return encoded_jwt
 
 def authenticate_user(email: str, password: str, db: Session):
-    db_user = get_user_by_email(db, email)
+    db_user = UserRepository.get_user_by_email(db, email)
     if not db_user or not verify_password(password, db_user.hashed_password):
         raise HTTPException(status_code=401, detail="Usuário ou senha incorretos")
     return db_user

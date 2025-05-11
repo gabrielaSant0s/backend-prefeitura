@@ -6,8 +6,6 @@ import uuid
 class DocumentRepository:
     @staticmethod
     def create_document(db: Session, document_data: dict):
-
-        print("============ doc", document_data)
         document = Document(
             id=str(uuid.uuid4()),
             document_type=document_data["document_type"],
