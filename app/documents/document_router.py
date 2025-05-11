@@ -20,7 +20,7 @@ def create_document(
     db_document = DocumentService.create_document(db, document_data)
     return db_document
 
-@router.get("/documents/me", response_model=list[DocumentResponse])
+@router.get("/me", response_model=list[DocumentResponse])
 def get_my_documents(
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
