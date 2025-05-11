@@ -6,6 +6,7 @@ from app.transports import transport_router
 from app.users import user_router
 from app.documents import document_router
 from dotenv import load_dotenv
+from app.chatbot.chatbot import router as chatbot_router
 import os
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
@@ -39,3 +40,4 @@ app.include_router(document_router.router, prefix="/documents", tags=["documents
 app.include_router(mock_router.router, prefix="/mock", tags=["mock"])
 app.include_router(transport_router.router, prefix="/transport", tags=["transport"])
 app.include_router(health.router, prefix="/health", tags=["health"])
+app.include_router(chatbot_router, prefix="/chat", tags=["chat"])
