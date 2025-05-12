@@ -1,16 +1,20 @@
 import uuid
 from datetime import datetime
 
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from app.users.user_model import User
 from app.documents.document_model import Document
 from app.transports.transport_model import TransportPass
 
 def create_mock_data(db: Session):
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    hashed_password = pwd_context.hash("hashed_password")
+
     user = User(
         username="mock_user_um",
         email="mock_user_um@example.com",
-        hashed_password="hashed_password"
+        hashed_password=hashed_password
     )
     db.add(user)
     db.commit()
